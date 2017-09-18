@@ -37,7 +37,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <configuration>
-                    <mainClass>pl.lodz.sda.App</mainClass>
+                    <mainClass>pl.lodz.sda.exercise.basic.App</mainClass>
                     <cleanupDaemonThreads>false</cleanupDaemonThreads>
                 </configuration>
             </plugin>

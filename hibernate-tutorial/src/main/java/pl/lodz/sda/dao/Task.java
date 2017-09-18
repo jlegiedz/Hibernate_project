@@ -1,14 +1,13 @@
-package pl.lodz.sda;
+package pl.lodz.sda.dao;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "task")
 public class Task {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id")
     Long id;
 
