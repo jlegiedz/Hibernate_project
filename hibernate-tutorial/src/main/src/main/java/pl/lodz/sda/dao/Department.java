@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Department {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "department_id")
     Long id;
 
@@ -61,7 +61,7 @@ public class Department {
         return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", company=" + company.toString() +
+                "," +
                 '}';
     }
 }

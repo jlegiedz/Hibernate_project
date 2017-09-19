@@ -21,12 +21,11 @@ public class HibernateSessionFactory {
     public static SessionFactory createSessionFactory(DB db) {
 
         // Tworzymy obiekt SessionFactory na podstawie którego będziemy tworzyć osobne sesje
-        // Pamiętamy, że sessionFactory powinno być tworzone jedno per połączenie do DB
+        // Pamiętamy, że sessionFactory(pula polaczen) powinno być tworzone jedno per połączenie do DB
         // Ustawiamy konfigurację dla naszego sessionFactory
         String configurationFileName = getConfigurationFileName(db);
         System.out.println("create session factory");
-        return new Configuration().configure(configurationFileName) // configures settings from hibernate.cfg-h2.xml
-                .buildSessionFactory();
+        return SingletonSessionFactory.getInstance(configurationFileName);
     }
 
     public static Session createSession(DB db) {
