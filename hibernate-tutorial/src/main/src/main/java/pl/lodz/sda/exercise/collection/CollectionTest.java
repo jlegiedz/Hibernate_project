@@ -1,5 +1,6 @@
 package pl.lodz.sda.exercise.collection;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import pl.lodz.sda.dao.Address;
@@ -8,7 +9,9 @@ import pl.lodz.sda.dao.Department;
 import pl.lodz.sda.environment.DB;
 import pl.lodz.sda.tools.HibernateSessionFactory;
 
+import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class CollectionTest {
@@ -21,7 +24,7 @@ public class CollectionTest {
         company.setAddress(address);
         address.setCompany(company);
 
-        //tworze departament mwiac mu do jakiej company nalezy
+        //tworze departament mowiac mu do jakiej company nalezy
         Department dp = new Department(company);
         Department dp2 = new Department(company);
         Set<Department> dps = new HashSet<>();
@@ -44,8 +47,14 @@ public class CollectionTest {
 //            session.save(address);
 //            session.save(dp);
 //            session.save(dp2);
-
             tx.commit();
+
+            String sql = "SELECT * FROM company c";
+            SQLQuery query = session.createSQLQuery(sql);
+            query.addEntity(Company.class);
+            List<Company> list = query.list();
+            System.out.println("Company from select: ");
+            list.forEach(System.out::println);
 
 //            tx = session.beginTransaction();
 //            //update
@@ -59,9 +68,9 @@ public class CollectionTest {
             session.delete(company);
             tx.commit();
 
-            System.out.println("COMPANY: "+ company);
-            System.out.println("DP:" + dp);
-            System.out.println("DP2: " + dp2);
+      //      System.out.println("COMPANY: "+ company);
+      //      System.out.println("DP:" + dp);
+      //      System.out.println("DP2: " + dp2);
         } catch (Exception e) {
             System.out.println("Exception occured. " + e.getMessage());
             e.printStackTrace();

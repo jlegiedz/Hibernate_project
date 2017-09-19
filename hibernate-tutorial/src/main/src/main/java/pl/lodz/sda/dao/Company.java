@@ -20,7 +20,7 @@ public class Company {
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     Set<Department> department = new HashSet<>();
 
-    @OneToOne(mappedBy = "company", cascade = CascadeType.ALL)  // company to pole javove
+    @OneToOne(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)  // company to pole javove
     @JoinColumn//(name = "address_id")
     private Address address;
 
