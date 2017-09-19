@@ -14,6 +14,9 @@ public class Department {
     @Column(name = "name")
     String name;
 
+    @Embedded
+    DepartmentAddress departmentAddress;
+
     //The @JoinColumn annotation is used to specify the FOREIGN KEY column used when joining an entity association or an embeddable collection.
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
@@ -26,10 +29,19 @@ public class Department {
         this.company = company;
     }
 
-    public Department(Long id, String name, Company company) {
+    public Department(Long id, String name, Company company, DepartmentAddress departmentAddress) {
         this.id = id;
         this.name = name;
         this.company = company;
+        this.departmentAddress=departmentAddress;
+    }
+
+    public DepartmentAddress getDepartmentAddress() {
+        return departmentAddress;
+    }
+
+    public void setDepartmentAddress(DepartmentAddress departmentAddress) {
+        this.departmentAddress = departmentAddress;
     }
 
     public Long getId() {
@@ -61,7 +73,7 @@ public class Department {
         return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                "," +
+                ", departmentAddress=" + departmentAddress +
                 '}';
     }
 }

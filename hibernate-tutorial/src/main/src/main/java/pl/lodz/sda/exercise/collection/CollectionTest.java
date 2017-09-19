@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import pl.lodz.sda.dao.Address;
 import pl.lodz.sda.dao.Company;
 import pl.lodz.sda.dao.Department;
+import pl.lodz.sda.dao.DepartmentAddress;
 import pl.lodz.sda.environment.DB;
 import pl.lodz.sda.tools.HibernateSessionFactory;
 
@@ -20,6 +21,7 @@ public class CollectionTest {
 
         Address address = new Address("Piotrkowska", 101, " 90-000", "Poland",null);
         Company company = new Company();
+        DepartmentAddress departmentAddress= new DepartmentAddress("Pabianicka","Lodz","Poland");
         company.setName("test");
         company.setAddress(address);
         address.setCompany(company);
@@ -32,6 +34,7 @@ public class CollectionTest {
         dps.add(dp2);
         // doddaje do setu departmentow
         company.setDepartment(dps);
+        dp.setDepartmentAddress(departmentAddress);
 
         Session session = null;
         Transaction tx = null;
@@ -49,11 +52,19 @@ public class CollectionTest {
 //            session.save(dp2);
             tx.commit();
 
-            String sql = "SELECT * FROM company c";
-            SQLQuery query = session.createSQLQuery(sql);
-            query.addEntity(Company.class);
-            List<Company> list = query.list();
-            System.out.println("Company from select: ");
+
+//            String sql = "SELECT * FROM company c";
+//            SQLQuery query = session.createSQLQuery(sql);
+//            query.addEntity(Company.class);
+//            List<Company> list = query.list();
+//            System.out.println("Company from select: ");
+//            list.forEach(System.out::println);
+
+            String sqlDep = "SELECT * FROM department d";
+            SQLQuery query = session.createSQLQuery(sqlDep);
+            query.addEntity(Department.class);
+            List<Department> list = query.list();
+            System.out.println("Departments from select: ");
             list.forEach(System.out::println);
 
 //            tx = session.beginTransaction();
