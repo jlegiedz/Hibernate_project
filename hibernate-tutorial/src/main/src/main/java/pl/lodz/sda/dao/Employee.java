@@ -7,8 +7,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "employee")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-//@DiscriminatorColumn(name="type") // kolumna ybedzie zawierac albo contractemployee albo regularemployee
+@Inheritance(strategy = InheritanceType.JOINED) // trzeba podac po czym join robimy
+
 public class Employee {
     @Id
     @GeneratedValue

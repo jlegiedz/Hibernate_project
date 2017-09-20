@@ -3,12 +3,13 @@ package pl.lodz.sda.dao;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  * Created by asia on 20/09/17.
  */
 @Entity
-//@DiscriminatorValue("contractemployee")
+@PrimaryKeyJoinColumn(name="ID")
 public class ContractEmployee extends Employee {
 
     @Column(name = "hour_rate")
