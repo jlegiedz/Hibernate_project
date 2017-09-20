@@ -7,8 +7,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "employee")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type") // kolumna ybedzie zawierac albo contractemployee albo regularemployee
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@DiscriminatorColumn(name="type") // kolumna ybedzie zawierac albo contractemployee albo regularemployee
 public class Employee {
     @Id
     @GeneratedValue

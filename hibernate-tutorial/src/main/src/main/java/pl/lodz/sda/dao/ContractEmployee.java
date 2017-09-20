@@ -8,7 +8,7 @@ import javax.persistence.Entity;
  * Created by asia on 20/09/17.
  */
 @Entity
-@DiscriminatorValue("contractemployee")
+//@DiscriminatorValue("contractemployee")
 public class ContractEmployee extends Employee {
 
     @Column(name = "hour_rate")

@@ -8,7 +8,7 @@ import javax.persistence.Entity;
  * Created by asia on 20/09/17.
  */
 @Entity
-@DiscriminatorValue("regularemployee")
+//@DiscriminatorValue("regularemployee") potrzebne tylko w przypadku single_table
 public class RegularEmployee extends Employee{
 
     @Column(name = "salary")
