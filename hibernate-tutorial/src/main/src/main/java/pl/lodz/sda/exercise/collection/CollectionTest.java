@@ -1,9 +1,7 @@
 package pl.lodz.sda.exercise.collection;
 
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
+import org.hibernate.criterion.Restrictions;
 import pl.lodz.sda.dao.Address;
 import pl.lodz.sda.dao.Company;
 import pl.lodz.sda.dao.Department;
@@ -57,11 +55,22 @@ public class CollectionTest {
             company1.getDepartment();
             session.getTransaction().commit();
             //jak jest cos lazy i zamykamy sesje to poleci wyjatek, nie mamy dostepu juz do danych
-            session.close();
+            //session.close();  // zakomenowalam do uzycia criteria
             //sprawdzamy czy jak sesje sa zmakniete mozemy sie dostac majac sama Factory do oddzialu
             System.out.println(company1.getDepartment());
 
 
+
+
+            //zaleta pisania Criteria- na etapie kompilacji widzimy czy zapytanie jest dobrze napsiane
+            // to jest jak select- musi byc otwarta sesja; otrzymamy zawsze liste
+
+            System.out.println("SELECT USING CRITERIA");
+            Criteria criteria = session.createCriteria(Company.class)
+                    .add(Restrictions.eq("name","test"));
+            List<Company> list = criteria.list();
+            System.out.println(list.get(0));
+            session.close();
 
             /*
             //bez sessionFactory
@@ -109,6 +118,7 @@ public class CollectionTest {
         } catch (Exception e) {
             System.out.println("Exception occured. " + e.getMessage());
             e.printStackTrace();
+            //musze zamknac jak uzywam sessionFactory
             HibernateSessionFactory.closeSessionFactory(sessionFactory);
         } finally {
        //     HibernateSessionFactory.closeAll(session);
