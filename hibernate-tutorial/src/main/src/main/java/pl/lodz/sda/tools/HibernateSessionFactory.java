@@ -1,5 +1,6 @@
 package pl.lodz.sda.tools;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -40,13 +41,22 @@ public class HibernateSessionFactory {
     }
 
     public static void closeSession(Session session) {
+
         session.close();
     }
 
     public static void closeSessionFactory(SessionFactory sessionFactory) {
-        Session currentSession = sessionFactory.getCurrentSession();
-        currentSession.close();
-        sessionFactory.close();
+        try {
+            Session currentSession =
+                    sessionFactory.getCurrentSession();
+            currentSession.close();
+        }catch(HibernateException e) {
+            System.out.println(e);
+        }
+        finally {
+            sessionFactory.close();
+        }
+
     }
 
     public static void closeAll(Session session) {

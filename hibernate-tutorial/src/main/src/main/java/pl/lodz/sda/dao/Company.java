@@ -17,10 +17,11 @@ public class Company {
     String name;
 
     // majac cascade: jesli usuwamy company- najpierw usunie departmnety tej company a potem company-> CollectioTest->Main
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     Set<Department> department = new HashSet<>();
 
-    @OneToOne(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)  // company to pole javove
+    // mappedBy wymagany przy relacji dwukierunkowej
+    @OneToOne(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)  // company to pole javove
     @JoinColumn//(name = "address_id")
     private Address address;
 
