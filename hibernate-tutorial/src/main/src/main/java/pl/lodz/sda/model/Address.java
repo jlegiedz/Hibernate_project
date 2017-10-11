@@ -1,6 +1,4 @@
-package pl.lodz.sda.dao;
-
-import com.sun.org.apache.xalan.internal.xsltc.dom.SimpleResultTreeImpl;
+package pl.lodz.sda.model;
 
 import javax.persistence.*;
 

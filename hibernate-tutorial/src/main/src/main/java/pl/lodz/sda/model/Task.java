@@ -1,4 +1,4 @@
-package pl.lodz.sda.dao;
+package pl.lodz.sda.model;
 
 import javax.persistence.*;
 

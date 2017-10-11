@@ -2,14 +2,13 @@ package pl.lodz.sda.exercise.collection;
 
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
-import pl.lodz.sda.dao.Address;
-import pl.lodz.sda.dao.Company;
-import pl.lodz.sda.dao.Department;
-import pl.lodz.sda.dao.DepartmentAddress;
+import pl.lodz.sda.model.Address;
+import pl.lodz.sda.model.Company;
+import pl.lodz.sda.model.Department;
+import pl.lodz.sda.model.DepartmentAddress;
 import pl.lodz.sda.environment.DB;
 import pl.lodz.sda.tools.HibernateSessionFactory;
 
-import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

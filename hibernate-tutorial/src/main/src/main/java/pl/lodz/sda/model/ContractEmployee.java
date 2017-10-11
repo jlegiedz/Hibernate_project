@@ -1,7 +1,6 @@
-package pl.lodz.sda.dao;
+package pl.lodz.sda.model;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 

@@ -1,12 +1,13 @@
-package pl.lodz.sda.dao;
+package pl.lodz.sda.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "company")
-public class Company {
+public class Company implements Serializable{           //byz moc zrobic serializacje z jsona do javy i w druga strone
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

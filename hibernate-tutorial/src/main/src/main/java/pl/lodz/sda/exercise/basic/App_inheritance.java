@@ -2,7 +2,7 @@ package pl.lodz.sda.exercise.basic;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import pl.lodz.sda.dao.ContractEmployee;
+import pl.lodz.sda.model.ContractEmployee;
 import pl.lodz.sda.environment.DB;
 import pl.lodz.sda.tools.HibernateSessionFactory;
 import java.util.List;
@@ -30,7 +30,7 @@ public class App_inheritance {
             trx.commit();
 
 
-            SQLQuery sql = session.createSQLQuery("select * from employee");
+            SQLQuery sql = session.createSQLQuery("select * from ContractEmployee");
             sql.addEntity(ContractEmployee.class); // co tu si ezadzialo??
             List list = sql.list();
             System.out.println("EMPLOYEES: ");
